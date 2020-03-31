@@ -1,0 +1,2 @@
+class UnknownLocatorException(Exception):
+    pass
