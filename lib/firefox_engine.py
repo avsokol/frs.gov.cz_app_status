@@ -43,7 +43,7 @@ class FireFoxEngine(CommonEngine):
             os.remove(downloaded_driver)
 
         if self.platform not in ["windows", "win32"]:
-            if not drv.is_file_executable:
+            if not drv.is_file_executable(self.driver_path):
                 st = os.stat(self.driver_path)
                 os.chmod(self.driver_path, st.st_mode | stat.S_IEXEC)
 
