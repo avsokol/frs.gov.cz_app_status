@@ -24,15 +24,19 @@ It supports Chrome, FireFox and Safari web browsers.
 
 *  Install virtualenv Python module
 
-    <code>pip3 install virtualenv</code>
+    <code>python3.7 -m pip install virtualenv</code>
+    
+    Note, sometimes you should in stall pip itself. On Ubuntu-based systems:
+    
+    <code>sudo apt install python-pip</code>
   
 * Clone repository
 
-  <code>git clone git@github.com:avsokol/frs.gov.cz_app_status.git</code>
+  <code>git clone https://github.com/avsokol/frs.gov.cz_app_status.git</code>
 
 * Create virtual environment
 
-  <code>cd ~/frs.gov.cz_app_status.git</code>
+  <code>cd ./frs.gov.cz_app_status.git</code>
 
   <code>python -m virtualenv venv</code>
 
