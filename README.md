@@ -38,11 +38,11 @@ It supports Chrome, FireFox and Safari web browsers.
 
   <code>cd ./frs.gov.cz_app_status.git</code>
 
-  <code>python -m virtualenv venv</code>
+  <code>python3 -m virtualenv venv</code>
 
 * Install required Python modules, run:
 
-  <code>pip3 install -r requirements.txt</code>
+  <code>python3 -m pip install -r requirements.txt</code>
 
 * Set PYTHONPATH
   
@@ -64,7 +64,7 @@ It supports Chrome, FireFox and Safari web browsers.
     You can choose among 3 most popular browsers: Chrome, FireFox and Safari (under MacOS only).
     Note, that chrome requires Chrome browser installed on your system and to be the same version.
 
-    Chrome and FireFox allows running in a **headless** mode. Safari doesn't have such possibility.
+    Chrome and FireFox allows running in a **headless** mode - this is the default option. Safari doesn't have such possibility.
     
     **headless** mode means that browser will run without any graphic interface, like in a command line.
 
