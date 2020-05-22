@@ -26,7 +26,7 @@ class CommonEngine(CommonDriver):
         super(CommonEngine, self).__init__()
         self.url = url
         self.engine = None
-        self.driver_path=None
+        self.driver_path = None
 
     def set_url(self, url):
         self.url = url
