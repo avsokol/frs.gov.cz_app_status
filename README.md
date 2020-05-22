@@ -62,7 +62,7 @@ It supports Chrome, FireFox and Safari web browsers.
 * Decide which browser you will use
 
     You can choose among 3 most popular browsers: Chrome, FireFox and Safari (under MacOS only).
-    Note, that chrome requires Chrome browser installed on your system.
+    Note, that chrome requires Chrome browser installed on your system and to be the same version.
 
     Chrome and FireFox allows running in a **headless** mode. Safari doesn't have such possibility.
     
