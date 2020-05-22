@@ -76,7 +76,7 @@ It supports Chrome, FireFox and Safari web browsers.
 
     Here is the example how to run application with FireFox browser:
     
-    <code>./venv/bin/python ./firefox.py</code>
+    <code>./venv/bin/python ./app_status_firefox.py</code>
  
 * Take a look at results you get
 

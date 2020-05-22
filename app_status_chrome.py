@@ -68,7 +68,7 @@ class ChromeEngine(CommonEngine):
 
         except SessionNotCreatedException as e:
             print(e.args)
-            self.final_clean(self.driver_path)
+            self.final_clean()
             exit(1)
 
         self._driver.set_window_size(1440, 900)
