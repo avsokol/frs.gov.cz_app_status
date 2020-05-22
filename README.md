@@ -40,6 +40,10 @@ It supports Chrome, FireFox and Safari web browsers.
 
   <code>python -m virtualenv venv</code>
 
+* Activate the virtual environment
+
+  <code>source ./venv/bin/activate</code>
+
 * Install required Python modules, run:
 
   <code>pip3 install -r requirements.txt</code>
