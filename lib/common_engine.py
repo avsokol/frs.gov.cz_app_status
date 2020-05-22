@@ -1,3 +1,5 @@
+import os
+import time
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver import ActionChains
 from selenium.webdriver.support import expected_conditions
@@ -23,6 +25,8 @@ class CommonEngine(CommonDriver):
     def __init__(self, url=None):
         super(CommonEngine, self).__init__()
         self.url = url
+        self.engine = None
+        self.driver_path=None
 
     def set_url(self, url):
         self.url = url
@@ -69,6 +73,38 @@ class CommonEngine(CommonDriver):
         WebDriverWait(self.get_driver(), constants.DEFAULT_SHORT_TIMEOUT).until(
             expected_conditions.visibility_of_element_located(UI.get_status_message_locator())
         )
+
+    def stop_engine(self):
+        self._driver.quit()
+
+    def final_clean(self):
+        if None in [self.engine, self.driver_path]:
+            return
+
+        if self.engine == "safari":
+            return
+
+        attempts = 2
+        period = 5
+        count = 0
+        while count < attempts:
+            try:
+                print("Trying to delete engine binary...")
+                os.remove(self.driver_path)
+                print("Trying to delete engine binary...Ok")
+                break
+
+            except PermissionError as e:
+                print(f"Final clean exception: {e.args}")
+                time.sleep(period)
+                count += 1
+                continue
+
+            except FileNotFoundError:
+                break
+
+            except Exception:
+                raise
 
     @wait_till_exist
     def get_app_status(self):

@@ -16,7 +16,7 @@ DRIVERS = {
     "darwin": {
         "firefox": "https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-macos.tar.gz",
         "chrome": "https://chromedriver.storage.googleapis.com/81.0.4044.138/chromedriver_mac64.zip",
-        "darwin": "/usr/bin/safaridriver"
+        "safari": "/usr/bin/safaridriver"
     },
     "linux": {
         "firefox": "https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-linux64.tar.gz",

@@ -2,6 +2,7 @@ import os
 import stat
 import sys
 from selenium import webdriver
+from selenium.common.exceptions import SessionNotCreatedException
 import drivers.drv_config as drv
 from inc.helpers import prepare_dump_path, str2bool
 from lib.common_engine import CommonEngine
@@ -62,27 +63,25 @@ class ChromeEngine(CommonEngine):
         chrome_options.headless = headless
         print("Headless mode: '{0}'".format(headless), type(headless))
 
-        self._driver = webdriver.Chrome(executable_path=self.driver_path, options=chrome_options)
-        self._driver.set_window_size(1440, 900)
-
-    def stop_engine(self):
-        self._driver.quit()
-
-    def final_clean(self):
         try:
-            os.remove(self.driver_path)
+            self._driver = webdriver.Chrome(executable_path=self.driver_path, options=chrome_options)
 
-        except Exception as e:
-            print("Final clean exception: {0}".format(e.args))
+        except SessionNotCreatedException as e:
+            print(e.args)
+            self.final_clean(self.driver_path)
+            exit(1)
+
+        self._driver.set_window_size(1440, 900)
 
 
 if __name__ == "__main__":
     from inc.frsapp.config import FRSAPP_URL, HEADLESS
-    from lib.tests.unit_test import simple_test
+    from lib.do_task import just_run
 
     browser = ChromeEngine(FRSAPP_URL)
     browser.prepare_dump_engine()
     browser.start_engine()
-    simple_test(browser)
+    just_run(browser)
     browser.exit()
+    browser.quit()
     browser.final_clean()

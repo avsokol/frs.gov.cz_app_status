@@ -63,24 +63,15 @@ class FireFoxEngine(CommonEngine):
         self._driver = webdriver.Firefox(executable_path=self.driver_path, options=firefox_options)
         self._driver.set_window_size(1440, 900)
 
-    def stop_engine(self):
-        self._driver.quit()
-
-    def final_clean(self):
-        try:
-            os.remove(self.driver_path)
-
-        except Exception as e:
-            print("Final clean exception: {0}".format(e.args))
-
 
 if __name__ == "__main__":
     from inc.frsapp.config import FRSAPP_URL, HEADLESS
-    from lib.tests.unit_test import simple_test
+    from lib.do_task import just_run
 
     browser = FireFoxEngine(FRSAPP_URL)
     browser.prepare_dump_engine()
     browser.start_engine()
-    simple_test(browser)
+    just_run(browser)
     browser.exit()
+    browser.quit()
     browser.final_clean()

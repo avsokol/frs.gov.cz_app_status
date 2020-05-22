@@ -16,7 +16,7 @@ class DarwinEngine(CommonEngine):
         super(DarwinEngine, self).__init__(url)
 
         self.platform = sys.platform
-        self.engine = "darwin"
+        self.engine = "safari"
 
         if driver_path is None:
             driver_path = "/usr/bin/safaridriver"
@@ -39,7 +39,7 @@ class DarwinEngine(CommonEngine):
             os.remove(downloaded_driver)
 
         if self.platform not in ["windows", "win32"]:
-            if not drv.is_file_executable:
+            if not drv.is_file_executable(self.driver_path):
                 st = os.stat(self.driver_path)
                 os.chmod(self.driver_path, st.st_mode | stat.S_IEXEC)
 
@@ -59,25 +59,14 @@ class DarwinEngine(CommonEngine):
         self._driver = webdriver.Safari(executable_path=self.driver_path)
         self._driver.set_window_size(1440, 900)
 
-    def stop_engine(self):
-        self._driver.quit()
-
-    def final_clean(self):
-        try:
-            if sys.platform != "darwin":
-                os.remove(self.driver_path)
-
-        except Exception as e:
-            print("Final clean exception: {0}".format(e.args))
-
 
 if __name__ == "__main__":
     from inc.frsapp.config import FRSAPP_URL, HEADLESS
-    from lib.tests.unit_test import simple_test
+    from lib.do_task import just_run
 
     browser = DarwinEngine(FRSAPP_URL)
+    engine_path = browser.driver_path
     browser.prepare_dump_engine()
     browser.start_engine()
-    simple_test(browser)
+    just_run(browser)
     browser.exit()
-    browser.final_clean()

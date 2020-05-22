@@ -1,6 +1,5 @@
 import os
 from time import sleep
-
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from inc.frsapp import constants
@@ -57,7 +56,7 @@ def get_status(browser, app_number, app_type, app_year):
     return browser.get_app_status()
 
 
-def simple_test(browser):
+def just_run(browser):
     browser.get_content()
     print("Title", browser.get_title())
 
@@ -66,8 +65,8 @@ def simple_test(browser):
     )
 
     cur_dir = os.path.dirname(__file__)
-    infile = os.path.abspath(os.path.join(cur_dir, "..", "..", "resources", "input_data.txt"))
-    outfile = os.path.abspath(os.path.join(cur_dir, "..", "..", "resources", "output_data.txt"))
+    infile = os.path.abspath(os.path.join(cur_dir, "..", "resources", "input_data.txt"))
+    outfile = os.path.abspath(os.path.join(cur_dir, "..", "resources", "output_data.txt"))
     fw = open(outfile, "w+")
     fw.close()
     process_file(browser, infile, output_file_path=outfile)
