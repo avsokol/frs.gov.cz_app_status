@@ -46,6 +46,18 @@ class CommonEngine(CommonDriver):
         actions.send_keys(number)
         actions.perform()
 
+    def enter_app_dash_number(self, dash_number):
+        if dash_number is None:
+            return
+
+        number_el = self.find_it(UI.get_app_dash_number_locator())
+        click_me(number_el, element_human_name="Application dash number")
+        number_el.clear()
+        click_me(number_el, element_human_name="Application dash number")
+        actions = ActionChains(self._driver)
+        actions.send_keys(dash_number)
+        actions.perform()
+
     @staticmethod
     def select_option(options_element, item):
         index = 0

@@ -1,4 +1,5 @@
 APP_NUMBER = "edit-ioff-application-number"
+APP_DASH_NUMBER = "edit-ioff-application-number-fake"
 APP_TYPE = "edit-ioff-application-code"
 APP_YEAR = "edit-ioff-application-year"
 SUBMIT_BUTTON = "edit-submit-button"
@@ -20,6 +21,10 @@ ELEMENT_TITLE = "title"
 APP_UI = {
     APP_NUMBER: {
         ELEMENT_TEXT: APP_NUMBER,
+        ELEMENT_TYPE: TYPE_ID
+    },
+    APP_DASH_NUMBER: {
+        ELEMENT_TEXT: APP_DASH_NUMBER,
         ELEMENT_TYPE: TYPE_ID
     },
     APP_TYPE: {

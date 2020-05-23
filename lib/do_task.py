@@ -20,10 +20,15 @@ def parse_app_line(line):
     seg1, seg2 = line.split("/")
     parts1 = seg1.split("-")
     app_number = parts1[1].strip().strip("0")
+
+    app_dash_number = None
+    if len(parts1) == 3:
+        app_dash_number = parts1[2].strip()
+
     part2 = seg2.split("-")
     app_type = part2[0].strip()
     app_year = part2[1].strip()
-    return app_number, app_type, app_year
+    return app_number, app_dash_number, app_type, app_year
 
 
 def process_file(browser, input_file_path, output_file_path=None):
@@ -32,9 +37,9 @@ def process_file(browser, input_file_path, output_file_path=None):
             line = line.strip("\n")
             out_line = line
             if is_line_to_be_parsed(line):
-                app_number, app_type, app_year = parse_app_line(line)
+                app_number, app_dash_number, app_type, app_year = parse_app_line(line)
                 sleep(1)
-                result = get_status(browser, app_number, app_type, app_year)
+                result = get_status(browser, app_number, app_dash_number, app_type, app_year)
                 out_line = "{0} - {1}".format(line, result)
                 print(out_line)
 
@@ -44,8 +49,9 @@ def process_file(browser, input_file_path, output_file_path=None):
                     f_out.write("\n")
 
 
-def get_status(browser, app_number, app_type, app_year):
+def get_status(browser, app_number, app_dash_number, app_type, app_year):
     browser.enter_app_number(app_number)
+    browser.enter_app_dash_number(app_dash_number)
     browser.enter_app_type(app_type)
     browser.enter_app_year(app_year)
     browser.submit_form()

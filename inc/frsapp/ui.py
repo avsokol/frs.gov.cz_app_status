@@ -35,6 +35,10 @@ class UI(object):
         return UI.get_element_locator(constants.APP_NUMBER)
 
     @staticmethod
+    def get_app_dash_number_locator():
+        return UI.get_element_locator(constants.APP_DASH_NUMBER)
+
+    @staticmethod
     def get_app_type_locator():
         return UI.get_element_locator(constants.APP_TYPE)
 
